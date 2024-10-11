@@ -5,10 +5,11 @@ somarbin xs ys n = drop (length result - n) result
     somarComCarry :: [Int] -> [Int] -> Int -> [Int]
     somarComCarry [] [] carry = if carry == 0 then [] else [carry]
     somarComCarry (x:xs) (y:ys) carry =
-      let soma = x + y + carry
-          bit = soma `mod` 2
-          novoCarry = soma `div` 2
-      in bit : somarComCarry xs ys novoCarry
+      bit : somarComCarry xs ys novoCarry
+      where
+        soma = x + y + carry
+        bit = soma `mod` 2
+        novoCarry = soma `div` 2
     somarComCarry _ _ _ = []  -- Para garantir que a recursão pare se os tamanhos das listas não baterem
 
     -- Inverte as listas, soma, e depois inverte o resultado
